@@ -40,9 +40,11 @@ The `unknown` block is only returned by one FT-100/CS2 decoder, but not the othe
     - HOLD_TRUNK_AND_RS    = `aa`
 
 ## Terminator
+`0d`
 This is just a CR (\r)
 
 ---
 
-## Disclaimer:
+## Disclaimer: ##
+This project is in no way sponsored or endoresed by Firstech LLC or any of its brands or subsidiaries.
 
