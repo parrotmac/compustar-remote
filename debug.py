@@ -4,34 +4,33 @@ import serial
 # 0c0e0331038e9971ea0d
 #
 # Broken up we get this:
-#   Blocks:         [0c0e03]   [31]    [03]     [8e9971]    [xx]        [0d]
-#   Description:    HEADER     CMD     Decoder  Remote ID   Checksum    Terminator
-#   Length:         6          2       2        6           2           2
-#   Positions:      1 - 6      7-8     9-10     11-16       17-18       19-20
+#   Blocks:         [0c0e03]   [310]    [3]     [8e9971]    [xx]        [0d]
+#   Description:    HEADER      CMD     '3'     Remote ID   Checksum    Terminator
+#   Length:         6           3       1       6           2           2
+#   Positions:      1 - 6       7-9     10      11-16      17-18       19-20
 #
 # #### Commands in Hex-notation
 #
 # # Single Presses
-# FT_LOCK                 = "30"
-# FT_UNLOCK               = "31"
-# FT_TRUNK                = "39"
-# FT_REMOTE_START         = "3a"
+# FT_LOCK                 = "300"
+# FT_UNLOCK               = "310"
+# FT_TRUNK                = "390"
+# FT_REMOTE_START         = "3a0"
 #
 # # Single HOLD
-# FT_HOLD_TRUNK           = "34"
-# FT_HOLD_REMOTE_START    = "32"
+# FT_HOLD_TRUNK           = "340"
+# FT_HOLD_REMOTE_START    = "320"
 #
 # # Two-key press
-# FT_LOCK_AND_UNLOCK      = "a7"
-# FT_LOCK_AND_TRUNK       = "a8"
-# FT_LOCK_AND_RS          = "ab"
-# FT_UNLOCK_AND_TRUNK     = "a9"
-# FT_UNLOCK_AND_RS        = "ac"
-# FT_TRUNK_AND_RS         = "ad"
+# FT_LOCK_AND_UNLOCK      = "a70"
+# FT_LOCK_AND_TRUNK       = "a80"
+# FT_LOCK_AND_RS          = "ab0"
+# FT_UNLOCK_AND_TRUNK     = "a90"
+# FT_UNLOCK_AND_RS        = "ac0"
+# FT_TRUNK_AND_RS         = "ad0"
 #
 # # Two-key hold
-# FT_HOLD_LOCK_AND_TRUNK  = "b4"
-# FT_HOLD_TRUNK_AND_RS    = "aa"
+# FT_HOLD_LOCK_AND_TRUNK  = "b40"
 #
 #
 # Full details of data sent by both remotes
@@ -114,6 +113,7 @@ class FirstTechRemotes:
 
     def get_command(self):
         if len(self.incoming_buffer) >= 20:
+            print "RAW: %s" % self.incoming_buffer
             raw_cmd_buffer_start = self.incoming_buffer.find(self.FT_HEADER)
             raw_cmd_buffer_end = raw_cmd_buffer_start + 20
 
@@ -137,9 +137,9 @@ while(True):
     ft_remote_decoder.update()
 
     remote_command = ft_remote_decoder.get_command()
-    if remote_command is not None:
-
-        if remote_command in FirstTechRemotes.REMOTE_COMMANDS.keys():
-            print FirstTechRemotes.REMOTE_COMMANDS[remote_command]
-        else:
-            print remote_command
+    # if remote_command is not None:
+    #
+    #     if remote_command in FirstTechRemotes.REMOTE_COMMANDS.keys():
+    #         print FirstTechRemotes.REMOTE_COMMANDS[remote_command]
+    #     else:
+    #         print remote_command
