@@ -2,6 +2,8 @@
 This is an example of how to interface Compustar/Firstech remotes using Python.
 See the hookup guide below for connection details.
 
+Watch: Here's a vido demonstration of using a Compustar remote to control a Philips Hue color light [YouTube](https://www.youtube.com/watch?v=nWA2bXaIzMM)
+
 # Command Structure
 
 A command hex-encoded from a decoder module will give you something like this:
