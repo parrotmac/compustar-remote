@@ -55,7 +55,7 @@ class FirstechRemote:
 
     def setup(self, serial_port):
         self._ft_serial = serial.Serial(serial_port, 9600, timeout=1)
-        print "Decoder Link Initialized"
+        logging.debug("Decoder Link Initialized")
 
     def on_command(self, fn):
         self._on_command = fn
@@ -65,7 +65,7 @@ class FirstechRemote:
         while self._ft_serial.in_waiting > 0:
             raw_data = self._ft_serial.read(self._ft_serial.in_waiting)
             self._incoming_buffer += raw_data.encode("hex")
-        # print self._incoming_buffer
+        # logging.debug(self._incoming_buffer)
 
     def _termination_index(self, data):
         for i in range(0, len(self._incoming_buffer), 2):
@@ -104,20 +104,10 @@ class FirstechRemote:
                             )
                         )
                     else:
-                        print current_command
+                        logging.debug(current_command)
 
         except KeyboardInterrupt:
             pass
         finally:
             self._ft_serial.close()
-            print "\nStopped."
-
-
-
-def log_remote_data(command):
-    print "Remote %s sent %s" % (command.get_remote_id(), command.get_command_text())
-
-ft_remote = FirstechRemote()
-ft_remote.setup("/dev/tty.usbserial-AD012345")
-ft_remote.on_command(log_remote_data)
-ft_remote.listen()
+            logging.debug("Stopped")
