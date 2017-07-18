@@ -90,11 +90,11 @@ The is cable made for flashing firmware and upgrading iDatalink modules and Comp
 # FAQ and TODO
 
 #### FAQ
-**Q:** Do you have people *frequently* ask questions about this project?
+**Q:** Do you have any frequently asked questions to answer here?
 
-**A:** No, I've never had *anybody* ask *any* questions about this project.
+**A:** No.
 
-### TODO
+#### TODO
 -   Get 2-Way working
 -   Confirm functionaly of newer Compustar remotes
 
