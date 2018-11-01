@@ -6,23 +6,23 @@ Watch: [Vido demonstration of using a Compustar remote to control a Philips Hue 
 
 # Command Structure
 
-A command hex-encoded from a decoder module will give you something like this:
-`0c0e0331xxyyyyyyzz0d`. This is an `UNLOCK` command from a remote id `yyyyyy` using a decoder `xx`.
+A hex-encoded message from a decoder might look like this:
+`0c0e0331xxyyyyyyzz0d`. This is an "UNLOCK" command from remote id `yyyyyy` using decoder `xx`.
 This example is broken down in this table:
 ```
 Blocks:         0c0e03      31        xx          yyyyyy      zz          [2000]      0d
 Description:    Header      Command   Decoder     Remote ID   Checksum    [Unkown*]   Terminator
-Length:         6           2         2           6           2           [4]         2
-Offset:         0 - 5       6-7       8-10        10-15       16-17       [18-19]     18-19 (or 22-23)
+Length:         3           1         1           3           1           [2]         1
+Offset:         0 - 2       3         4           5 - 7       8           [9 - 10]    9 [or 11]
 ```
 Of the two FT-100/CS2 decoder decoders tested, one adds what I've labeled `unknown`. I have no idea what this data means or does, other than it making the command length more unpredictable :P
 
 ### Header
-`0c` `0e` `03`
+`0c0e03`
 Possible interpretations:
-- Form Feed/Page Break (0x0c == FF)
-- Shift out (0x0e == SO)
-- End-of-text (0x03 == ETX)
+- Form Feed/Page Break (`0x0c` == FF)
+- Shift out (`0x0e` == SO)
+- End-of-text (`0x03` == ETX)
 
 ### Commands
 Descriptions of each of the commands
