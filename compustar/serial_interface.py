@@ -64,7 +64,7 @@ class FirstechRemote:
     def _update_buffer(self):
         while self._ft_serial.in_waiting > 0:
             raw_data = self._ft_serial.read(self._ft_serial.in_waiting)
-            self._incoming_buffer += raw_data.encode("hex")
+            self._incoming_buffer += raw_data.hex()
         # logging.debug(self._incoming_buffer)
 
     def _termination_index(self, data):
